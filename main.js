@@ -1,21 +1,13 @@
-const rootElement = document.getElementById('root');
-
-/*const element = document.createElement('div');
-element.textContent = 'Hello World';
-element.className = 'container';
-rootElement.appendChild(element);*/
+const numbers = [1,2,3,4,5];
+let tens = [];
 
 
-/*const element = React.createElement(
-    'div',
-    {
-        className: 'container',
-        children: 'Hello World 1'
-    }
-);*/
+for (let index = 0; index < numbers.length; index++) {
+    const number = numbers[index];
+    console.log(number);
+    
+    tens.push(number);
+}
 
 
-const element = <div className="container">Hello World 2</div>;
-
-
-ReactDOM.createRoot(rootElement).render(element);
+console.log(tens);
