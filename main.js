@@ -1,13 +1,31 @@
-const numbers = [1,2,3,4,5];
-let tens = [];
+function FruitListItem(props) {
+  function handleClick(e, id) {
+    console.log(e);
+    console.log(`removed ${id}`);
+  }
 
-
-for (let index = 0; index < numbers.length; index++) {
-    const number = numbers[index];
-    console.log(number);
-    
-    tens.push(number);
+  return (
+    <li onClick={(e) => handleClick(e, props.fruit.id)}>
+      {props.fruit.name}{' '}
+    </li>
+  );
 }
 
+function FruitList(props) {
+  const fruitListItems = props.fruits.map((fruit) => (
+    <FruitListItem key={fruit.id} fruit={fruit} />
+  ));
+  return <ul>{fruitListItems}</ul>;
+}
 
-console.log(tens);
+const data = [
+  { id: 1, name: 'apple' },
+  { id: 2, name: 'orange' },
+  { id: 3, name: 'blueberry' },
+  { id: 4, name: 'banana' },
+  { id: 5, name: 'kiwi' },
+];
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <FruitList fruits={data} />
+);
