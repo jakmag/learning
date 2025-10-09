@@ -1,31 +1,25 @@
-function FruitListItem(props) {
-  function handleClick(e, id) {
-    console.log(e);
-    console.log(`removed ${id}`);
+const { useState } = React;
+
+const App = () => {
+
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+
+  const loadData = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false)
+      setData([1,2,3]);
+    },4000);
   }
 
   return (
-    <li onClick={(e) => handleClick(e, props.fruit.id)}>
-      {props.fruit.name}{' '}
-    </li>
-  );
+    <>
+      {loading && <p>Loading...</p>}
+      <pre>{JSON.stringify(data, null, '')}</pre>
+      <button onClick={loadData}>Load Data</button>
+    </>
+  )
 }
 
-function FruitList(props) {
-  const fruitListItems = props.fruits.map((fruit) => (
-    <FruitListItem key={fruit.id} fruit={fruit} />
-  ));
-  return <ul>{fruitListItems}</ul>;
-}
-
-const data = [
-  { id: 1, name: 'apple' },
-  { id: 2, name: 'orange' },
-  { id: 3, name: 'blueberry' },
-  { id: 4, name: 'banana' },
-  { id: 5, name: 'kiwi' },
-];
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <FruitList fruits={data} />
-);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
