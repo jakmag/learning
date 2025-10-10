@@ -1,25 +1,26 @@
 const { useState } = React;
 
-const App = () => {
+const Counter = ({initialCount}) => {
 
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [count, setCount] = useState(initialCount)
 
-  const loadData = () => {
-    setLoading(true);
+  const handleClick = () => {
     setTimeout(() => {
-      setLoading(false)
-      setData([1,2,3]);
-    },4000);
+      setCount(previous => previous + 1)
+    },1000);
   }
 
   return (
     <>
-      {loading && <p>Loading...</p>}
-      <pre>{JSON.stringify(data, null, '')}</pre>
-      <button onClick={loadData}>Load Data</button>
+    Count: {count}
+    <button onClick={handleClick}>
+      Increment basic shit
+    </button>
     </>
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Counter initialCount={0} />
+)
